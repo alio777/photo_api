@@ -32,7 +32,7 @@ const show = async (req, res) => {
 	res.send({
 		status: 'success',
 		data: {
-			book,
+			photo,
 		}
 	});
 }

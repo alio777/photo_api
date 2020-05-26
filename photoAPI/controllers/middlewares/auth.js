@@ -3,7 +3,7 @@
  */
 
 const bcrypt = require('bcrypt');
-const { users } = require('../../models');
+const { User } = require('../../models');
 
 const basic = async (req, res, next) => {
 	console.log("Hello from auth.basic!");
@@ -34,7 +34,7 @@ const basic = async (req, res, next) => {
 	const [username, password] = decodedPayload.split(':');
 
 	// find user with the username (bail if no such user exists)
-	const user = await new users({ username }).fetch({ require: false });
+	const user = await new User({ username }).fetch({ require: false });
 	if (!user) {
 		res.status(401).send({
 			status: 'fail',

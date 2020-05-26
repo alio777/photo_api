@@ -3,13 +3,13 @@
  */
 
 module.exports = (bookshelf) => {
-	return bookshelf.model('users', {
+	return bookshelf.model('User', {
 		tableName: 'users',
 		photos() {
-			return this.hasMany('photos');
+			return this.hasMany('Photo');
         },
         albums() {
-			return this.hasMany('albums');
+			return this.hasMany('Album');
 		}
 	}, {
 		hashSaltRounds: 10,

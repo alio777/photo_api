@@ -15,3 +15,10 @@ module.exports = (bookshelf) => {
 		hashSaltRounds: 10,
 	});
 };
+
+// {
+// 	"email": "oskar.jonsson13@gmail.com",
+// 	"password": "jonsson",
+// 	"first_name": "Oskar",
+// 	"last_name": "Jönsson"
+// }

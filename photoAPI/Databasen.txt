@@ -1,0 +1,142 @@
+-- phpMyAdmin SQL Dump
+-- version 4.9.3
+-- https://www.phpmyadmin.net/
+--
+-- Värd: localhost:8889
+-- Tid vid skapande: 02 jun 2020 kl 19:38
+-- Serverversion: 5.7.26
+-- PHP-version: 7.4.2
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+--
+-- Databas: `photo`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Tabellstruktur `albums`
+--
+
+CREATE TABLE `albums` (
+  `id` int(11) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `user_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumpning av Data i tabell `albums`
+--
+
+INSERT INTO `albums` (`id`, `title`, `user_id`) VALUES
+(1, 'Sommarbilder', 1),
+(2, 'Alfons album', 2);
+
+-- --------------------------------------------------------
+
+--
+-- Tabellstruktur `albums_photos`
+--
+
+CREATE TABLE `albums_photos` (
+  `album_id` int(11) NOT NULL,
+  `photo_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumpning av Data i tabell `albums_photos`
+--
+
+INSERT INTO `albums_photos` (`album_id`, `photo_id`) VALUES
+(1, 1),
+(2, 2);
+
+-- --------------------------------------------------------
+
+--
+-- Tabellstruktur `photos`
+--
+
+CREATE TABLE `photos` (
+  `id` int(11) NOT NULL,
+  `title` varchar(255) DEFAULT NULL,
+  `url` varchar(255) DEFAULT NULL,
+  `comment` varchar(255) DEFAULT NULL,
+  `user_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumpning av Data i tabell `photos`
+--
+
+INSERT INTO `photos` (`id`, `title`, `url`, `comment`, `user_id`) VALUES
+(1, '1:a bilden', 'www.alisförstabild.se', 'absolut första bilden', 1),
+(2, 'Alfons bild', 'www.alfons-sförstabild.se', 'absolut första bilden av alfons', 2);
+
+-- --------------------------------------------------------
+
+--
+-- Tabellstruktur `users`
+--
+
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `first_name` varchar(255) NOT NULL,
+  `last_name` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumpning av Data i tabell `users`
+--
+
+INSERT INTO `users` (`id`, `email`, `password`, `first_name`, `last_name`) VALUES
+(1, 'ali57099@hotmail.com', '$2b$10$FPCRYHoHAobHTXSDp/IsoOS05Ki9vjPGXTRCwybSRcAJ2u5nH6rS.', 'Ali', 'Hammoude'),
+(2, 'alfons@hotmail.se', '$2b$10$DF8mrFZb/hBKx9BCQNtJc.E3pkrl94AfFKWyRzypzb.2fiewrFwOa', 'Alfons', 'Åberg');
+
+--
+-- Index för dumpade tabeller
+--
+
+--
+-- Index för tabell `albums`
+--
+ALTER TABLE `albums`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index för tabell `photos`
+--
+ALTER TABLE `photos`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index för tabell `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT för dumpade tabeller
+--
+
+--
+-- AUTO_INCREMENT för tabell `albums`
+--
+ALTER TABLE `albums`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT för tabell `photos`
+--
+ALTER TABLE `photos`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT för tabell `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;

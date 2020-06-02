@@ -1,21 +1,21 @@
 const express = require('express');
 const router = express.Router();
-const userController = require('../controllers/user_controller');
-const userValidationRules = require('../validation_rules/user');
+const usersController = require('../controllers/users_controller');
+const userValidationRules = require('../validation_rules/users');
 
-/* Get all resources */
-router.get('/', userController.index);
+// GET /
+router.get('/', usersController.index);
 
-/* Get a specific resource */
-router.get('/:userId', userController.show);
+// GET /:userId
+router.get('/:userId', usersController.show);
 
-/* Store a new resource */
-router.post('/', userValidationRules.createRules, userController.store);
+// POST /
+router.post('/', userValidationRules.createRules, usersController.store);
 
-/* Update a specific resource */
-router.put('/:userId', userValidationRules.updateRules, userController.update);
+// PUT /:userId
+router.put('/:userId', usersController.update);
 
-/* Destroy a specific resource */
-router.delete('/:userId', userController.destroy);
+// POST /:userId
+router.delete('/:userId', usersController.destroy);
 
 module.exports = router;

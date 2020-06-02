@@ -1,21 +1,29 @@
-/**
- * Album Controller
- */
 
-const models = require('../models');
+//User Controller
+
 
 /**
- * Get all resources
+ * hämta alla användare
  *
  * GET /
  */
 const index = async (req, res) => {
-	const all_albums = await models.Album.fetchAll();
-
+	if (!req.user) {
+		res.status(401).send({
+			status: 'fail',
+			data: 'Authentication Required.',
+		});
+		return;
+	}
 	res.send({
 		status: 'success',
-		data: {
-			albums: all_albums
+		data: { //hämta data i den här ordningen
+			user: {
+				id: req.user.attributes.id,
+				email: req.user.attributes.email,
+				first_name: req.user.attributes.first_name,
+				last_name: req.user.attributes.last_name,
+			},
 		}
 	});
 }
@@ -23,17 +31,12 @@ const index = async (req, res) => {
 /**
  * Get a specific resource
  *
- * GET /:albumId
+ * GET /:userId
  */
 const show = async (req, res) => {
-	const album = await new models.Album({ id: req.params.albumId })
-		.fetch({ withRelated: ['photos'] });
-
-	res.send({
-		status: 'success',
-		data: {
-			album,
-		}
+	res.status(405).send({
+		status: 'fail',
+		message: 'Method Not Allowed.',
 	});
 }
 
@@ -42,7 +45,7 @@ const show = async (req, res) => {
  *
  * POST /
  */
-const store = (req, res) => {
+const store = async (req, res) => {
 	res.status(405).send({
 		status: 'fail',
 		message: 'Method Not Allowed.',
@@ -52,9 +55,9 @@ const store = (req, res) => {
 /**
  * Update a specific resource
  *
- * POST /:albumId
+ * POST /:userId
  */
-const update = (req, res) => {
+const update = async (req, res) => {
 	res.status(405).send({
 		status: 'fail',
 		message: 'Method Not Allowed.',
@@ -64,7 +67,7 @@ const update = (req, res) => {
 /**
  * Destroy a specific resource
  *
- * DELETE /:albumId
+ * DELETE /:userId
  */
 const destroy = (req, res) => {
 	res.status(405).send({
